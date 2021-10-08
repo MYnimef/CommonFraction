@@ -39,10 +39,19 @@ class CommonFraction:
         self.__reduce()
         return self
 
-    def __div__(self, cf):
+    def __truediv__(self, cf):
         self.__numerator *= cf.denominator
         self.__denominator *= cf.numerator
         return self
+
+    def __pow__(self, power, modulo=None):
+        self.__numerator **= power
+        self.__denominator **= power
+        self.__reduce()
+        return self
+
+    def __float__(self):
+        return self.__numerator / self.__denominator
 
     def __str__(self):
         return "The value is {}/{}".format(self.__numerator, self.__denominator)
